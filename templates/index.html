@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information System</title>
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename = 'stnd.jpg')}}">
+
+</head>
+<body>
+
+
+
+<div class="container">
+
+    <div class="well text-center">
+
+        <h1>Welcome to Student Information System</h1>
+
+    </div>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col md-12">
+
+            <h2>Student List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
+                Add Student Data </button> </h2>
+
+            <nav class="navbar navbar-inverse">
+
+                <div class="container-fluid">
+
+                  <form class="navbar-form">
+
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Search">
+                      </div>
+
+                      <button type="submit" class="btn btn-danger">Search #ID</button>
+                      <button type="button" class="btn btn-danger pull-right">College</button>
+                      <button type="button" class="btn btn-danger pull-right">Course</button>
+
+                  </form>
+
+                </div>
+
+
+
+
+            </nav>
+
+
+            <table class="table table-striped">
+
+                <tr>
+                    <th>#ID</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+
+
+
+                </tr>
+
+                <tr>
+
+                    <td>2018-1592</td>
+                    <td>Jinky</td>
+                    <td>Maglasang</td>
+                    <td>Computer Science</td>
+                    <td>4</td>
+                    <td>Female</td>
+
+                    <td>
+                        <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
+                        <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+
+
+
+                    </td>
+
+
+                </tr>
+
+
+
+            </table>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+    <div id="modaledit" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+       <div class="modal-content">
+
+           <div class="modal-header">
+
+               <button type="button" class="close" data-dismiss="modal">&times</button>
+               <h4 class="modal-title">Please Update Data</h4>
+
+           </div>
+
+           <div class="modal-body">
+
+               <form action="" method="POST">
+
+                   <div class="form-group">
+
+                       <label>#ID</label>
+                       <input type="text" class="form-control" name="id" value="2018-0001">
+
+                   </div>
+
+                    <div class="form-group">
+
+                        <label>Firstname</label>
+                        <input type="text" class="form-control" name="firstname" value="Jungkook">
+
+                    </div>
+
+                   <div class="form-group">
+
+                       <label>Lastname</label>
+                       <input type="text" class="form-control" name="lastname" value="Jeon">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Course</label>
+                       <input type="text" class="form-control" name="course" value="Computer Science">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Year</label>
+                       <input type="text" class="form-control" name="year" value="4">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Gender</label>
+                       <input type="text" class="form-control" name="gender" value="Male">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <button class="btn btn-primary" type="submit">Update Data</button>
+
+                   </div>
+
+               </form>
+
+           </div>
+
+           <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+           </div>
+
+       </div>
+
+
+   </div>
+
+
+
+    </div>
+
+
+    <div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+       <div class="modal-content">
+
+           <div class="modal-header">
+
+               <button type="button" class="close" data-dismiss="modal">&times</button>
+               <h4 class="modal-title">Please Insert Data</h4>
+
+           </div>
+
+           <div class="modal-body">
+
+               <form action="" method="POST">
+
+                   <div class="form-group">
+
+                       <label>#ID</label>
+                       <input type="text" class="form-control" name="id" required="l">
+
+                   </div>
+
+                    <div class="form-group">
+
+                        <label>Firstname</label>
+                        <input type="text" class="form-control" name="firstname" required="l">
+
+                    </div>
+
+                   <div class="form-group">
+
+                       <label>Lastname</label>
+                       <input type="text" class="form-control" name="lastname" required="l">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Course</label>
+                       <input type="text" class="form-control" name="course" required="l">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Year</label>
+                       <input type="text" class="form-control" name="year" required="l">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Gender</label>
+                       <input type="text" class="form-control" name="gender" required="l">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <button class="btn btn-primary" type="submit">Insert Data</button>
+
+                   </div>
+
+               </form>
+
+           </div>
+
+           <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+           </div>
+
+       </div>
+
+
+   </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+    <div class="well">
+
+    <h3>Website:www.studentinformationsystem.com.ph
+    <span class="pull-right">Like Us:www.facebook.com</span>
+    </h3>
+</div>
+
+</div>
+
+</body>
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+</html>

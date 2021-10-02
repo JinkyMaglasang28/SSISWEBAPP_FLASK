@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College List</title>
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename = 'stnd.jpg')}}">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="well text-center">
+
+        <h1>Welcome to Student Information System</h1>
+
+    </div>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col md-12">
+
+            <h2>College List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
+                Add Course</button></h2>
+
+            <form class="navbar-form">
+
+                <div class="form-group">
+                    <input type="text" class="gorm-control" placeholder="Search">
+                </div>
+
+                <button type="submit" class="btn btn-danger">Search</button>
+
+            </form>
+
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>BSCS</td>
+                    <td>College of Computer Studies</td>
+
+                    <td>
+                        <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
+                        <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+
+    <div id="modaledit" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+       <div class="modal-content">
+
+           <div class="modal-header">
+
+               <button type="button" class="close" data-dismiss="modal">&times</button>
+               <h4 class="modal-title">Please Update Data</h4>
+
+           </div>
+
+           <div class="modal-body">
+
+               <form action="" method="POST">
+
+                   <div class="form-group">
+
+                       <label>Code</label>
+                       <input type="text" class="form-control" name="Code" value="BSCS">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <label>Name</label>
+                       <input type="text" class="form-control" name="Name" value="College of Computer Studies">
+
+                   </div>
+
+                   <div class="form-group">
+
+                       <button class="btn btn-primary" type="submit">Update Data</button>
+
+                   </div>
+
+
+               </form>
+
+           </div>
+
+           <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+           </div>
+
+
+
+       </div>
+
+
+   </div>
+
+
+    </div>
+
+    <div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+       <div class="modal-content">
+
+           <div class="modal-header">
+
+               <button type="button" class="close" data-dismiss="modal">&times</button>
+               <h4 class="modal-title">Please Insert Data</h4>
+
+           </div>
+
+           <div class="modal-body">
+
+               <form action="" method="POST">
+
+                   <div class="form-group">
+
+                       <label>Code</label>
+                       <input type="text" class="form-control" name="Code" required="l">
+                   </div>
+
+                    <div class="form-group">
+
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="Name" required="l">
+                    </div>
+
+                   <div class="form-group">
+
+                       <button class="btn btn-primary" type="submit">Insert Data</button>
+
+                   </div>
+
+               </form>
+
+           </div>
+
+           <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+           </div>
+
+       </div>
+
+   </div>
+
+    </div>
+
+
+</div>
+
+    <div class="well">
+
+        <h3>Website:www.studentinformationsystem.com.ph
+        <span class="pull-right">Like Us:www.facebook.com</span>
+        </h3>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+</html>
