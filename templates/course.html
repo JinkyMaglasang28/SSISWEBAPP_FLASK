@@ -15,6 +15,7 @@
 
         <h1>Welcome to Student Information System</h1>
 
+
     </div>
 
 <div class="container">
@@ -26,17 +27,49 @@
             <h2>Course List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
                 Add Course</button></h2>
 
-            <form class="navbar-form">
+    {%with messages = get_flashed_messages()%}
 
-                <div class="form-group">
+    {%if messages%}
 
-                    <input type="text" class="gorm-control" placeholder="Search">
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissable" role="alert">
+
+     <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+
+         <span aria-hidden="true">&times;</span>
+
+     </button>
+        {{message}}
+
+
+    </div>
+
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+            <nav class="navbar navbar-inverse">
+
+                <div class="container-fluid">
+
+                  <form class="navbar-form">
+
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Search">
+                      </div>
+
+                      <button type="submit" class="btn btn-danger">Search #ID</button>
+                      <button type="button" class="btn btn-danger pull-right">College</button>
+                      <button type="button" class="btn btn-danger pull-right">Course</button>
+                      <button type="button" class="btn btn-danger pull-right">Student</button>
+
+                  </form>
 
                 </div>
 
-                <button type="submit" class="btn btn-danger">Search</button>
-
-            </form>
+            </nav>
 
             <table class="table table-striped">
 
@@ -47,29 +80,24 @@
                     <th>Action</th>
                 </tr>
 
+                {% for row in course_list%}
+
                 <tr>
-                    <td>BSCS</td>
-                    <td>Bachelor of Science in Computer Science</td>
-                    <td>College of Computer Studies</td>
+                    <td>{{row.0}}</td>
+                    <td>{{row.1}}</td>
+                    <td>{{row.2}}</td>
 
                     <td>
-                        <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
-                        <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                        <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+                        <a href="/delete/{{row.0}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
 
                     </td>
 
                 </tr>
 
-            </table>
+                <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
 
 
-
-
-        </div>
-
-    </div>
-
-    <div id="modaledit" class="modal fade" role="dialog">
    <div class="modal-dialog">
 
        <div class="modal-content">
@@ -83,26 +111,26 @@
 
            <div class="modal-body">
 
-               <form action="" method="POST">
+               <form action="{{ url_for('update_course') }}" method="POST">
 
                    <div class="form-group">
 
                        <label>Code</label>
-                       <input type="text" class="form-control" name="Code" value="BSCS">
+                       <input type="text" class="form-control" name="course_code" value="{{row.0}}">
 
                    </div>
 
                     <div class="form-group">
 
                         <label>Name</label>
-                        <input type="text" class="form-control" name="Name" value="Bachelor of Science in Computer Science">
+                        <input type="text" class="form-control" name="course_name" value="{{row.1}}">
 
                     </div>
 
                    <div class="form-group">
 
                        <label>College</label>
-                       <input type="text" class="form-control" name="College" value="College of Computer Studies">
+                       <input type="text" class="form-control" name="college" value="{{row.2}}">
 
                    </div>
 
@@ -123,15 +151,20 @@
 
            </div>
 
-
-
        </div>
-
 
    </div>
 
+</div>
 
-    </div>
+                    {% endfor%}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
 
     <div id="mymodal" class="modal fade" role="dialog">
    <div class="modal-dialog">
@@ -147,24 +180,24 @@
 
            <div class="modal-body">
 
-               <form action="" method="POST">
+               <form action="{{url_for('add_course')}}" method="POST">
 
                    <div class="form-group">
 
                        <label>Code</label>
-                       <input type="text" class="form-control" name="Code" required="l">
+                       <input type="text" class="form-control" name="course_code" required="1">
                    </div>
 
                     <div class="form-group">
 
                         <label>Name</label>
-                        <input type="text" class="form-control" name="Name" required="l">
+                        <input type="text" class="form-control" name="course_name" required="1">
                     </div>
 
                    <div class="form-group">
 
                        <label>College</label>
-                       <input type="text" class="form-control" name="College" required="l">
+                       <input type="text" class="form-control" name="college" required="1">
                    </div>
 
                    <div class="form-group">
@@ -198,6 +231,8 @@
         <span class="pull-right">Like Us:www.facebook.com</span>
         </h3>
     </div>
+
+</div>
 
 </div>
 
