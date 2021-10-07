@@ -17,7 +17,6 @@ def Index():
     cur.execute("SELECT * FROM student_list")
     data = cur.fetchall()
     cur.close()
-
     return render_template('index.html', student_list = data)
 
 @app.route('/insert', methods = ['POST'])
@@ -39,7 +38,6 @@ def insert():
 
 @app.route('/delete/<string:stud_id>', methods = ['GET'])
 def delete(stud_id):
-
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM student_list WHERE stud_id=%s", (stud_id,))
@@ -56,8 +54,8 @@ def update():
         year_lvl = request.form['year_lvl']
         gender = request.form['gender']
         cur = mysql.connection.cursor()
-        cur.execute("""UPDATE student_list SET stud_id=%s, fname=%s, lname=%s, course=%s, year_lvl=%s, gender=%s WHERE stud_id=%s""",
-                    (stud_id, fname, lname, course, year_lvl, gender))
+        cur.execute("""UPDATE student_list SET fname=%s, lname=%s, course=%s, year_lvl=%s, gender=%s WHERE stud_id=%s""",
+                    (fname, lname, course, year_lvl, gender, stud_id))
         flash("Data updated successfully")
         mysql.connection.commit()
         return redirect(url_for('Index'))
@@ -98,8 +96,8 @@ def update_course():
         college = request.form['college']
         cur = mysql.connection.cursor()
         cur.execute(
-            """UPDATE course_list SET course_code=%s, course_name=%s, college=%s, WHERE course_code=%s""",
-            (course_code, course_name, college))
+            """UPDATE course_list SET course_name=%s, college=%s, WHERE course_code=%s""",
+            (course_name, college, course_code))
         flash("Data updated successfully")
         mysql.connection.commit()
         return redirect(url_for('Index'))
