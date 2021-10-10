@@ -100,15 +100,15 @@ def update_course():
             (course_name, college, course_code))
         flash("Data updated successfully")
         mysql.connection.commit()
-        return redirect(url_for('Index'))
+        return redirect(url_for('course'))
 
-#@app.route('/delete/<string"course_code>', methods = ['GET'])
-#def delete_course(course_code):
-    #flash("Record has been deleted successfully")
-    #cur = mysql.connection.cursor()
-    #cur.execute("DELETE FROM course_list WHERE course_code=%s", (course_code,))
-    #mysql.connection.commit()
-    #return redirect(url_for('Index'))
+@app.route('/delete/<string:course_code>', methods = ['GET'])
+def delete_course(course_code):
+    flash("Record has been deleted successfully")
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM course_list WHERE course_code=%s", (course_code,))
+    mysql.connection.commit()
+    return redirect(url_for('Index'))
 
 
 
@@ -145,7 +145,15 @@ def update_college():
             (college_name, college_code))
         flash("Data updated successfully")
         mysql.connection.commit()
-        return redirect(url_for('Index'))
+        return redirect(url_for('college'))
+
+@app.route('/delete/<string:college_name>', methods = ['GET'])
+def delete_college(college_name):
+    flash("Record has been deleted successfully")
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM college_name WHERE college_name=%s", (college_name,))
+    mysql.connection.commit()
+    return redirect(url_for('Index'))
 
 
 if __name__=="__main__":
