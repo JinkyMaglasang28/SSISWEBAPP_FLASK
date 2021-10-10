@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+{% extends "base.html"%}
     <meta charset="UTF-8">
     <title>Student Information System</title>
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{url_for('static', filename = 'stnd.jpg')}}">
 
-</head>
-<body>
+{%block content %}
 
 <div class="container">
 
@@ -25,6 +23,7 @@
 
             <h2>Student List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
                 Add Student Data </button> </h2>
+            <input class="form-control mb-4" id="tableSearch" type="text" placeholder="🔍 Search Student.....">
 
     {%with messages = get_flashed_messages()%}
 
@@ -111,7 +110,7 @@
 
 
                   <label>ID:</label>
-                  <input type="number" class="form-control" name="stud_id" value="{{row.0}}">
+                  <input type="tel"  pattern="[0-9]{4}-[0-9]{4}" placeholder="e.g. 0000-0000"  required class="form-control" name="stud_id"  value="{{row.0}} ">
 
 
                </div>
@@ -298,10 +297,9 @@
 
 </div>
 </div>
-</body>
 
+{% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
 
-</html>
