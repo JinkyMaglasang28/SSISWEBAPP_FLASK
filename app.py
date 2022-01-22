@@ -120,22 +120,22 @@ def add_college():
     if request.method == "POST":
         flash("Data Inserted Successfully")
     if request.method == "POST":
-        college_name = request.form['college_name']
         college_code = request.form['college_code']
+        college_name = request.form['college_name']
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO college_list (college_name, college_code) VALUES (%s, %s)",
-                        (college_name, college_code))
+                        (college_code, college_name))
         mysql.connection.commit()
         return redirect(url_for('college'))
 
 @app.route('/update_college', methods = ['POST', 'GET'])
 def update_college():
     if request.method == 'POST':
-        college_name = request.form['college_name']
         college_code = request.form['college_code']
+        college_name = request.form['college_name']
         cur = mysql.connection.cursor()
         cur.execute(
-            """UPDATE college_list SET college_name=%s, college_code=%s, WHERE college_name=%s""",
+            """UPDATE college_list SET college_code=%s, college_name=%s, WHERE college_code=%s""",
             (college_name, college_code))
         flash("Data updated successfully")
         mysql.connection.commit()
@@ -145,7 +145,7 @@ def update_college():
 def delete_college(college_name):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM college_name WHERE college_name=%s", (college_name,))
+    cur.execute("DELETE FROM college_code WHERE college_code=%s", (college_code,))
     mysql.connection.commit()
     return redirect(url_for('Index'))
 
