@@ -1,14 +1,18 @@
 from flask import Flask
-from flask_mysqldb import MySQL
+from os import getenv
 
-app = Flask(__name__)
-app.secret_key = "flash message"
+def create_app() -> object:
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = getenv('SECRET_KEY')
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'database'
+    # import blueprints
+    from .views.students import student
+    from .views.courses import course
+    from .views.colleges import college
 
-mysql = MySQL(app)
+    # register blueprints
+    app.register_blueprint(student)
+    app.register_blueprint(course)
+    app.register_blueprint(college)
 
-from app import routes
+    return app
