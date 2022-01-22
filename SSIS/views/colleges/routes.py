@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 from SSIS.models.student import Student
 from SSIS.models.course import Course
 from SSIS.models.college import College
-from . import college
+from . import colleges
 
 
 

@@ -61,12 +61,6 @@ def update():
         return redirect(url_for('Index'))
 
 
-
-
-
-
-
-
 @app.route('/course')
 def course():
     cur = mysql.connection.cursor()
