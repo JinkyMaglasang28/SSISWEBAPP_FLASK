@@ -142,7 +142,7 @@ def update_college():
         return redirect(url_for('college'))
 
 @app.route('/delete/<string:college_name>', methods = ['GET'])
-def delete_college(college_name):
+def delete_college(college_code):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM college_code WHERE college_code=%s", (college_code,))

@@ -1,2 +1,2 @@
-from SSIS.models.college import College
+#from SSIS.models.course import Course
 
