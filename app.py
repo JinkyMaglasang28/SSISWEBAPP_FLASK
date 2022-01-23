@@ -22,7 +22,6 @@ def Index():
 def insert():
     if request.method == "POST":
         flash("Data Inserted Successfully")
-    if request.method == "POST":
         stud_id = request.form['stud_id']
         fname = request.form['fname']
         lname = request.form['lname']
@@ -35,7 +34,7 @@ def insert():
         mysql.connection.commit()
         return redirect(url_for('Index'))
 
-@app.route('/delete/<string:stud_id>', methods = ['GET'])
+@app.route('/delete/student/<string:stud_id>')
 def delete(stud_id):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
@@ -46,7 +45,7 @@ def delete(stud_id):
 @app.route('/update', methods = ['POST', 'GET'])
 def update():
     if request.method == 'POST':
-        stud_id = request.form['stud_id']
+        # stud_id = request.form['stud_id']
         fname = request.form['fname']
         lname = request.form['lname']
         course = request.form['course']
@@ -95,13 +94,13 @@ def update_course():
         mysql.connection.commit()
         return redirect(url_for('course'))
 
-@app.route('/delete/<string:course_code>', methods = ['GET'])
+@app.route('/delete/course/<string:course_code>', methods = ['GET'])
 def delete_course(course_code):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM course_list WHERE course_code=%s", (course_code,))
     mysql.connection.commit()
-    return redirect(url_for('Index'))
+    return redirect(url_for('course'))
 
 
 
@@ -140,7 +139,7 @@ def update_college():
         mysql.connection.commit()
         return redirect(url_for('college'))
 
-@app.route('/delete/<string:college_name>', methods = ['GET'])
+@app.route('/delete/college/<string:college_code>', methods = ['GET'])
 def delete_college(college_code):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
@@ -148,6 +147,19 @@ def delete_college(college_code):
     mysql.connection.commit()
     return redirect(url_for('Index'))
 
+
+'''def search(self,searchInput):
+		cur = mysql.connection.cursor()
+		cur.execute("SET @search=%s",(searchInput,))
+
+		cur.execute("""SELECT * FROM(SELECT department.departmentNo,department.departmentName,college.collegeCode
+					   FROM department,college
+					   WHERE department.college=college.collegeNo) AS department
+					   WHERE departmentNo  LIKE CONCAT('%',@search,'%') or departmentName LIKE CONCAT('%',@search,'%')  or 
+					   		 collegeCode LIKE CONCAT('%',@search,'%')""")
+		data = cur.fetchall()
+
+		return data'''
 
 if __name__=="__main__":
     app.run(debug=True)
