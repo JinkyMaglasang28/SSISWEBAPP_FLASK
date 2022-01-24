@@ -46,6 +46,7 @@ def delete(stud_id):
 def update():
     if request.method == 'POST':
         # stud_id = request.form['stud_id']
+        stud_id = request.form.get('stud_id')
         fname = request.form['fname']
         lname = request.form['lname']
         course = request.form['course']
@@ -88,7 +89,7 @@ def update_course():
         college = request.form['college']
         cur = mysql.connection.cursor()
         cur.execute(
-            """UPDATE course_list SET course_name=%s, college=%s, WHERE course_code=%s""",
+            """UPDATE course_list SET course_name=%s, college=%s WHERE course_code=%s""",
             (course_name, college, course_code))
         flash("Data updated successfully")
         mysql.connection.commit()
@@ -121,7 +122,7 @@ def add_college():
         college_code = request.form['college_code']
         college_name = request.form['college_name']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO college_list (college_name, college_code) VALUES (%s, %s)",
+        cur.execute("INSERT INTO college_list (college_code, college_name) VALUES (%s, %s)",
                         (college_code, college_name))
         mysql.connection.commit()
         return redirect(url_for('college'))
@@ -133,7 +134,7 @@ def update_college():
         college_name = request.form['college_name']
         cur = mysql.connection.cursor()
         cur.execute(
-            """UPDATE college_list SET college_code=%s, college_name=%s, WHERE college_code=%s""",
+            """UPDATE college_list SET college_name=%s WHERE college_code=%s""",
             (college_name, college_code))
         flash("Data updated successfully")
         mysql.connection.commit()
@@ -143,7 +144,7 @@ def update_college():
 def delete_college(college_code):
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM college_code WHERE college_code=%s", (college_code,))
+    cur.execute("DELETE FROM college_list WHERE college_code=%s", (college_code,))
     mysql.connection.commit()
     return redirect(url_for('Index'))
 
