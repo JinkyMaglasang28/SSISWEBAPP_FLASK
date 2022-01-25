@@ -22,8 +22,9 @@
 
             <h2>College List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
                 Add College</button></h2>
-            <input class="form-control mb-4" id="tableSearch" type="text" placeholder="🔍 Search College.....">
-
+            <form action="/searchcollege" method="post">
+            <input class="form-control mb-4" id="tableSearch" name="tableSearch" type="text" placeholder="🔍 Search College.....">
+            </form>
     {%with messages = get_flashed_messages()%}
 
     {%if messages%}
@@ -83,7 +84,7 @@
 
            <div class="modal-body">
 
-               <form action="{{ url_for('update_college') }}" method="POST">
+               <form action="{{ url_for('college.update_college') }}" method="POST">
 
                    <div class="form-group">
 
@@ -143,7 +144,7 @@
 
            <div class="modal-body">
 
-               <form action="{{url_for('add_college')}}" method="POST">
+               <form action="{{url_for('college.add_college')}}" method="POST">
 
                    <div class="form-group">
 

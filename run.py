@@ -1,10 +1,10 @@
 from SSIS import create_app
 from dotenv import load_dotenv
+load_dotenv('.env')
+
 
 app = create_app()
 
-load_dotenv('.env')
-
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     

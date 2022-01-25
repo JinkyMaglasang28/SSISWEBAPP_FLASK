@@ -22,8 +22,9 @@
 
             <h2>Course List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">
                 Add Course</button></h2>
-            <input class="form-control mb-4" id="tableSearch" type="text" placeholder="🔍 Search Course.....">
-
+            <form action="/searchcourse" method="post">
+            <input class="form-control mb-4" id="tableSearch" name="tableSearch" type="text" placeholder="🔍 Search Course.....">
+            </form>
     {%with messages = get_flashed_messages()%}
 
     {%if messages%}
@@ -87,7 +88,7 @@
 
            <div class="modal-body">
 
-               <form action="{{ url_for('update_course') }}" method="POST">
+               <form action="{{ url_for('course.update_course') }}" method="POST">
 
                    <div class="form-group">
 
@@ -103,12 +104,17 @@
 
                     </div>
 
-                   <div class="form-group">
-
-                       <label>College</label>
-                       <input type="text" class="form-control" name="college" value="{{row.2}}">
-
-                   </div>
+                    <div class="form-group">
+                        <label>College:</label> 
+                        <div class="input-group mb-3" > 
+                          <select class="custom-select" id="college" name="college" type="text" required>
+                            <option selected="">Select a College</option>
+                            {%for row in college%}
+                            <option>{{row.1}}</option>
+                            {%endfor%}
+                          </select>
+                        </div>
+                      </div>
 
                    <div class="form-group">
 
@@ -156,7 +162,7 @@
 
            <div class="modal-body">
 
-               <form action="{{url_for('add_course')}}" method="POST">
+               <form action="{{url_for('course.add_course')}}" method="POST">
 
                    <div class="form-group">
 
@@ -170,11 +176,17 @@
                         <input type="text" class="form-control" name="course_name" required="1">
                     </div>
 
-                   <div class="form-group">
-
-                       <label>College</label>
-                       <input type="text" class="form-control" name="college" required="1">
-                   </div>
+                    <div class="form-group">
+                        <label>College:</label> 
+                        <div class="input-group mb-3" > 
+                          <select class="custom-select" id="college" name="college" type="text" required>
+                            <option selected="">Select a College</option>
+                            {%for row in college%}
+                            <option>{{row.1}}</option>
+                            {%endfor%}
+                          </select>
+                        </div>
+                      </div>
 
                    <div class="form-group">
 
