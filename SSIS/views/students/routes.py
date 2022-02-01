@@ -36,6 +36,7 @@ def insert():
 
 @student.route('/delete/student/<string:stud_id>')
 def delete(stud_id):
+    destroy(public_id="ssis/{}".format(stud_id))
     flash("Record has been deleted successfully")
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM student_list WHERE stud_id=%s", (stud_id,))
